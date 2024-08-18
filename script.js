@@ -88,6 +88,7 @@ locations.forEach(function(location) {
     <p>${location.description}</p>`;
   marker.bindPopup(popupContent).on('click', function() {
     this.openPopup();
+    addPopupAnimation();
   });
 });
 
@@ -105,5 +106,15 @@ locationSelect.addEventListener('change', function() {
         <p>${selectedLocation.description}</p>
       `)
       .openOn(map);
+    addPopupAnimation();
   }
 });
+
+// Function to add animation class to popup
+function addPopupAnimation() {
+  const popup = document.querySelector('.leaflet-popup');
+  if (popup) {
+    popup.classList.add('animated-popup');
+    setTimeout(() => popup.classList.remove('animated-popup'), 1000);
+  }
+}
